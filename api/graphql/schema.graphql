@@ -1,0 +1,25 @@
+type Team {
+    id: ID!
+    name: String!
+    group: String
+}
+
+type User {
+    id: ID!
+        email: String!
+}
+
+type Query {
+    getTeamsByGroup(group: String!): [Team]
+    getUserById(id: ID!): User
+    getUserByEmail(email: String!): User
+}
+
+type Mutation {
+    createUser(email: String!): User
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
