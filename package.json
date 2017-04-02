@@ -2,9 +2,7 @@
   "name": "haveYouBet",
   "version": "1.0.0",
   "description": "",
-  "dependencies": {
-    "react-google-charts": "^1.5.4-alpha.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^7.2.1",
     "eslint": "^3.18.0",

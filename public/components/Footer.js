@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Footer = () => (
-    <div>
-        @Trip.com
-    </div>
-);
+class Footer extends React.Component {
+    render() {
+        return (
+            <div>
+                @Trip.com
+            </div>
+        );
+    }
+}
 
 export default Footer;

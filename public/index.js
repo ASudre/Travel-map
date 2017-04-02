@@ -26533,7 +26533,6 @@
 	    value: function componentDidMount() {
 	      var _this2 = this;
 
-	      console.log('hello');
 	      fetch('https://httpbin.org/get', {
 	        method: 'GET',
 	        headers: {

@@ -1,22 +1,41 @@
-let nextTodoId = 0;
-export const addTodo = (text) => {
+let nextCountryId = 0;
+
+export const addCountry = (text) => {
     return {
-        type: 'ADD_TODO',
-        id: nextTodoId++,
+        type: 'ADD_COUNTRY',
+        id: nextCountryId++,
         text,
     };
 };
 
-export const setVisibilityFilter = (filter) => {
+export const requestUser = (userId) => {
     return {
-        type: 'SET_VISIBILITY_FILTER',
-        filter,
+        type: 'REQUEST_USER',
+        userId,
     };
 };
 
-export const toggleTodo = (id) => {
+export const receiveUser = (user) => {
     return {
-        type: 'TOGGLE_TODO',
-        id,
+        type: 'RECEIVE_USER',
+        user,
+        receivedAt: Date.now(),
     };
 };
+
+export const fetchUser = (userId) => {
+    return (dispatch) => {
+        dispatch(requestUser(userId));
+        return dispatch(receiveUser(getUser(userId)));
+    };
+};
+
+function getUser(userId) {
+    return {
+        id: userId,
+        countries: [
+            'France',
+            'Germany',
+        ],
+    };
+}
