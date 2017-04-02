@@ -13,11 +13,9 @@ class GeoChart extends React.Component {
                       displayMode: 'regions',
                       region: 'world',
                       sizeAxis: {minValue: 0,  maxSize: 20},
-                      width: "1000px",
                       magnifyingGlass: {enable: true, zoomFactor: 9.0},
                   }}
-                  width="1000px"
-                  height="800px"
+                  width="100%"
                 />
             </div>
         );
