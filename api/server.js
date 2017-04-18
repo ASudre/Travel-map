@@ -1,81 +1,48 @@
 'use strict';
 
-import Hapi from 'hapi';
-import Good from 'good';
+import express from 'express';
+import graphqlHTTP from 'express-graphql';
+import path from 'path';
 import mongoose from 'mongoose';
-import { apolloHapi, graphiqlHapi } from 'apollo-server';
 import { makeExecutableSchema } from 'graphql-tools';
+import serveStatic from 'serve-static';
 
 import models from './models';
-import routes from './routes';
 
 import graphqlSchema from './graphql/schema.graphql';
 import createResolvers from './graphql/resolvers';
 
-const server = new Hapi.Server();
-server.connection(
-    {
-        port: 3001,
-        host: 'localhost',
-    }
-);
+const server = express();
 
-server.route(routes);
+//server.route(routes);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/haveyoubetDotcom');
+mongoose.connect('mongodb://localhost:27017/travel-map');
 
 const executableSchema = makeExecutableSchema({
     typeDefs: [graphqlSchema],
     resolvers: createResolvers(models),
 });
 
-server.register({
-    register: apolloHapi,
-    options: {
-        path: '/graphql',
-        apolloOptions: () => ({
-            pretty: true,
-            schema: executableSchema,
-        }),
-    },
-});
+server.use('/api', graphqlHTTP(
+    {
+        schema: executableSchema,
+        graphiql: true,
+    })
+);
 
-server.register({
-    register: graphiqlHapi,
-    options: {
-        path: '/graphiql',
-        graphiqlOptions: {
-            endpointURL: '/graphql',
-        },
-    },
-});
+server.use(express.static(__dirname + '/../public'));
+    // maxAge: '0',
+    // setHeaders: (res, path) => {
+        // const mimeType = serveStatic.mime.lookup(path || '');
+        // const cacheControl = cacheControlByMimeType[mimeType];
+        // if (cacheControl) {
+        //     res.setHeader('Cache-Control', 'public, max-age=' + cacheControl)
+        // }
+//     },
+// }));
 
-server.register({
-    register: Good,
-    options: {
-        reporters: {
-            console: [{
-                module: 'good-squeeze',
-                name: 'Squeeze',
-                args: [{
-                    response: '*',
-                    log: '*',
-                }],
-            }, {
-                module: 'good-console',
-            }, 'stdout'],
-        },
-    },
-}, (err) => {
-    if (err) {
-        throw err; // something bad happened loading the plugin
-    }
-});
 
-server.start((err) => {
-    if (err) {
-        throw err;
-    }
-    server.log('info', 'Server running at: ' + server.info.uri);
-});
+server.listen(8080);
+
+console.log("The GraphQL Server is running.");

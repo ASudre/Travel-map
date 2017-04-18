@@ -1,22 +1,18 @@
-type Team {
-    id: ID!
-    name: String!
-    group: String
-}
-
 type User {
     id: ID!
-        email: String!
+    email: String!
+    countries: [String]
 }
 
 type Query {
-    getTeamsByGroup(group: String!): [Team]
     getUserById(id: ID!): User
     getUserByEmail(email: String!): User
 }
 
 type Mutation {
-    createUser(email: String!): User
+    createUser(email: String!, password: String!): User
+    addUserCountry(userId: ID!, countryName: String!): User
+    createToken(username: String!, password: String!): String
 }
 
 schema {
