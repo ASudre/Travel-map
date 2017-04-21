@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from './Footer';
 import Map from './Map';
+import LogIn from "../containers/LogIn";
 
 class App extends React.Component {
 
@@ -12,6 +13,7 @@ class App extends React.Component {
         return (
             <div>
                 <Map />
+                <LogIn />
                 <Footer />
             </div>
         );

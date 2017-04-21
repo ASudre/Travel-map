@@ -1,19 +1,12 @@
-const routes =
-    [
-        {
-            method: 'GET',
-            path: '/',
-            handler: (request, reply) => {
-                reply('Hello, world!');
-            },
-        },
-        {
-            method: 'GET',
-            path: '/{name}',
-            handler: (request, reply) => {
-                reply('hello, ' + encodeURIComponent(request.params.name) + '!');
-            },
-        },
-    ];
+import express from 'express';
+import usersRoute from './usersRoute';
 
-export default routes;
+const router = express.Router();
+
+router.use('/users', usersRoute);
+
+////////////////////////////////////////////////////////////////////////////////////
+// Exports
+////////////////////////////////////////////////////////////////////////////////////
+
+export default router;

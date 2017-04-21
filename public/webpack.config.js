@@ -15,6 +15,8 @@ const config = {
         contentBase: path.resolve(__dirname, '.'),
     },
 
+    devtool: 'sourceMap',
+
     module: {
         rules: [
             {
@@ -24,7 +26,7 @@ const config = {
                     loader: 'babel-loader',
                     options: {
                         presets: ['es2015', 'es2017', 'react'],
-                        plugins: ['babel-plugin-transform-object-rest-spread'],
+                        plugins: ['babel-plugin-transform-object-rest-spread', 'relay'],
                     },
                 }],
             },

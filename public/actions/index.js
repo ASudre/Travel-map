@@ -1,3 +1,5 @@
+import userAPIService from '../services/userAPIService';
+
 let nextCountryId = 0;
 
 export const addCountry = (text) => {
@@ -23,10 +25,36 @@ export const receiveUser = (user) => {
     };
 };
 
+export const requestLogIn = (email) => {
+    return {
+        type: 'REQUEST_LOGIN',
+        email,
+    };
+};
+
+export const receiveLogIn = (user) => {
+    return {
+        type: 'RECEIVE_LOGIN',
+        user,
+        receivedAt: Date.now(),
+    };
+};
+
 export const fetchUser = (userId) => {
     return (dispatch) => {
         dispatch(requestUser(userId));
         return dispatch(receiveUser(getUser(userId)));
+    };
+};
+
+export const logIn = (email, password) => {
+    return (dispatch) => {
+        dispatch(requestLogIn(email));
+        userAPIService.logIn({ email, password })
+        .then(data => data.json())
+        .then(user => {
+            return dispatch(receiveLogIn(user));
+        });
     };
 };
 
