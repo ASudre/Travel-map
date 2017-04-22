@@ -9,7 +9,9 @@ import passport from 'passport';
 import localStrategy from './passport/strategy/localStrategy';
 
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import cors from 'cors';
 
 const app = express();
 const port = 8080;
@@ -21,8 +23,10 @@ const mongoStore = new MongooseStore({connection: mongoose});
 
 passport.use(localStrategy);
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({limit: '50mb'}));
+app.use(cookieParser(conf.session.secret));
 app.use(session(
     {
         secret: conf.session.secret,
@@ -30,7 +34,8 @@ app.use(session(
         saveUninitialized: false,
         store: mongoStore,
         cookie: {
-            maxAge: new Date(Date.now() + 3600000 - new Date().getTimezoneOffset() * 60000),
+            domain: 'travel.map.com',
+            //maxAge: new Date(Date.now() + 3600000 - new Date().getTimezoneOffset() * 60000),
         },
         key: 'sessionId',
     }));

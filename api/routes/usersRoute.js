@@ -13,6 +13,7 @@ passport.serializeUser((user, cb) => {
 
 passport.deserializeUser((token, cb) => {
     try {
+        console.log('token :', token);
         const payload = jwt.verify(token, conf.authentication.jwtSecret, {issuer: conf.authentication.issuer});
         models.User.findById(payload.sub, (err, user) => {
             if (err) {
@@ -31,7 +32,7 @@ passport.deserializeUser((token, cb) => {
 });
 
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', { session: false }, (err, user, info) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) { return next(err); }
         if (!user) {
             return res.sendStatus(403);
@@ -39,7 +40,7 @@ router.post('/login', (req, res, next) => {
         req.logIn(user, (err) => {
             if (err) { return next(err); }
             return res.json({
-                id: user._id,
+                id: user.id,
                 email: user.email,
                 countries: user.countries,
             });
@@ -47,8 +48,12 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-router.post('/country', ensureAuthenticated,
+router.post('/:userId/countries/:country', ensureAuthenticated,
     (req, res, next) => {
+        const userId = req.params.userId;
+        const country = req.params.country;
+        console.log('userId :', userId);
+        console.log('country :', country);
         res.json(req.user);
     }
 );

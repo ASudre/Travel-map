@@ -10,7 +10,7 @@ const style = {
     },
 };
 
-const InputCountry = ({addCountryClick}) => {
+const InputCountry = ({addCountryClick, userId}) => {
     let form = {
         country: '',
     };
@@ -21,7 +21,7 @@ const InputCountry = ({addCountryClick}) => {
                 if (!form.country.input.value && !form.country.input.value.trim()) {
                     return;
                 }
-                addCountryClick(form.country.input.value);
+                addCountryClick(userId, form.country.input.value);
                 form.country.input.value = '';
             }}>
                 <TextField ref={node => {

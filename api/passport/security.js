@@ -1,4 +1,5 @@
 const ensureAuthenticated = (req, res, next) => {
+    console.log('user', req.user);
     if (req.isAuthenticated()) {
         return next();
     } else {

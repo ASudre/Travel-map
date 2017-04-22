@@ -2,11 +2,35 @@ import userAPIService from '../services/userAPIService';
 
 let nextCountryId = 0;
 
-export const addCountry = (text) => {
+export const addCountry = (country) => {
     return {
         type: 'ADD_COUNTRY',
         id: nextCountryId++,
-        text,
+        country,
+    };
+};
+
+export const refreshCountries = (countries) => {
+    return {
+        type: 'REFRESH_COUNTRIES',
+        countries,
+    };
+};
+
+export const requestSaveCountry = (userId, country) => {
+    return {
+        type: 'REQUEST_SAVE_COUNTRY',
+        userId,
+        country,
+    };
+};
+
+export const receiveSaveCountry = (userId, countries) => {
+    return {
+        type: 'RECEIVE_SAVE_COUNTRY',
+        userId,
+        countries,
+        receivedAt: Date.now(),
     };
 };
 
@@ -47,14 +71,26 @@ export const fetchUser = (userId) => {
     };
 };
 
+export const saveCountry = (userId, country) => {
+    return (dispatch) => {
+        dispatch(requestSaveCountry(userId, country));
+        userAPIService.saveCountry({userId, country})
+            .then(data => data.json())
+            .then(countries => {
+                dispatch(receiveSaveCountry(userId, countries));
+                return dispatch(refreshCountries(countries));
+            });
+    };
+};
+
 export const logIn = (email, password) => {
     return (dispatch) => {
         dispatch(requestLogIn(email));
         userAPIService.logIn({ email, password })
-        .then(data => data.json())
-        .then(user => {
-            return dispatch(receiveLogIn(user));
-        });
+            .then(data => data.json())
+            .then(user => {
+                return dispatch(receiveLogIn(user));
+            });
     };
 };
 

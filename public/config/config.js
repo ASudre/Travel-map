@@ -1,5 +1,5 @@
 export default {
     server: {
-        baseUrl: "http://localhost:8080",
+        baseUrl: "http://travel.map.com:8080",
     },
 };

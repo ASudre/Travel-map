@@ -1,12 +1,15 @@
 import config from '../config/config';
+import axios from 'axios';
 
 function logIn({ email, password }) {
-    return fetch(`${config.server.baseUrl}/api/users/login`, {
+    return axios({
+        url: `${config.server.baseUrl}/api/users/login`,
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
+        //credentials: 'same-origin',
+        data: JSON.stringify({
             email,
             password,
         }),
@@ -16,6 +19,9 @@ function logIn({ email, password }) {
 function saveCountry({ userId, country }) {
     return fetch(`${config.server.baseUrl}/api/users/${userId}/countries/${country}`, {
         method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
     });
 }
 

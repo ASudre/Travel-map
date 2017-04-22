@@ -1,7 +1,12 @@
-const country = (state = {}, action) => {
+const countries = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_COUNTRY':
-            return action.text;
+            return [
+                ...state.countries,
+                action.country,
+            ];
+        case 'REFRESH_COUNTRIES':
+            return action.countries;
         default:
             return state;
     }
@@ -13,12 +18,15 @@ const user = (state = {}, action) => {
             return action.user;
         case 'RECEIVE_LOGIN':
             return action.user;
+        case 'RECEIVE_SAVE_COUNTRIES':
+            return action.user;
         case 'ADD_COUNTRY':
             return Object.assign({}, state, {
-                countries: [
-                    ...state.countries,
-                    country({}, action),
-                ],
+                countries: countries(state, action),
+            });
+        case 'REFRESH_COUNTRIES':
+            return Object.assign({}, state, {
+                countries: countries({}, action),
             });
         default:
             return state;
