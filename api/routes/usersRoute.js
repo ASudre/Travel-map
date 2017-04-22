@@ -13,7 +13,6 @@ passport.serializeUser((user, cb) => {
 
 passport.deserializeUser((token, cb) => {
     try {
-        console.log('token :', token);
         const payload = jwt.verify(token, conf.authentication.jwtSecret, {issuer: conf.authentication.issuer});
         models.User.findById(payload.sub, (err, user) => {
             if (err) {
@@ -46,6 +45,15 @@ router.post('/login', (req, res, next) => {
             });
         });
     })(req, res, next);
+});
+
+router.post('/users/create', (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = new models.User({ email, password });
+    return user.save().then((response) => {
+        return res.json(response);
+    });
 });
 
 router.post('/:userId/countries/:country', //ensureAuthenticated,
