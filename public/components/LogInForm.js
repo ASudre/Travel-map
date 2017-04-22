@@ -1,63 +1,68 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import {orange500} from 'material-ui/styles/colors';
+import {TextField, RaisedButton} from 'material-ui';
 
 const style = {
     marginLeft: 20,
-    underlineStyle: {
-        borderColor: orange500,
-    },
+    underlineStyle: {},
 };
 
-const LogInForm = ({logIn}) => {
-    let form = {
-        email: {
-            value: '',
-            error: '',
-        },
-        password: {
-            value: '',
-            error: '',
-        },
-    };
-    return (
-        <div>
-            <form onSubmit={e => {
-                e.preventDefault();
-                if (!isValid(form.email.value) || !isValid(form.password.value)) {
-                    return;
-                }
-                logIn(form.email.value.input.value, form.password.value.input.value);
-            }}>
-                <TextField ref={node => {
-                    form.email.value = node;
-                }}
-                  hintText="email"
-                  style={style}
-                  errorText={form.email.error}
+const FORM_VALUES = {
+    EMAIL : 'email',
+    PASSWORD : 'password'
+};
+
+class LogInForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {email : '', password : ''};
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.createUser = this.createUser.bind(this);
+    }
+
+    onChange(key) {
+        return event => {
+            let formElement = {};
+            formElement[key] = event.target.value;
+            this.setState(formElement);
+        }
+    }
+
+    handleSubmit(event) {
+        this.props.logIn(this.state.email, this.state.password);
+        event.preventDefault();
+    }
+
+    createUser(event){
+        this.props.createUser(this.state.email, this.state.password);
+        event.preventDefault();
+    }
+
+    render() {
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <TextField onChange={this.onChange(FORM_VALUES.EMAIL)}
+                    hintText="email"
+                    style={style}
                 />
-                <TextField ref={node => {
-                    form.password.value = node;
-                }}
-                  hintText="password"
-                  style={style}
-                  type="password"
-                  errorText={form.password.error}
-                />
+                <TextField onChange={this.onChange(FORM_VALUES.PASSWORD)}
+                    hintText="password"
+                    style={style}
+                    type="password"/>
                 <RaisedButton
-                  label="Log in"
-                  primary
-                  style={style}
-                  type="submit"
-                />
+                    label="Log in"
+                    primary
+                    style={style}
+                    type="submit" />
+                <RaisedButton onClick={this.createUser}
+                    label="Create"
+                    secondary
+                    style={style}
+                    type="submit" />
             </form>
-        </div>
-    );
-};
+        );
+    }
 
-const isValid = (field) => {
-    return field.input.value && field.input.value.trim();
-};
+}
 
 export default LogInForm;

@@ -47,13 +47,10 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-router.post('/users/create', (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
+router.post('/', (req, res) => {
+    const {email, password} = req.body;
     const user = new models.User({ email, password });
-    return user.save().then((response) => {
-        return res.json(response);
-    });
+    return user.save().then(response => res.json(response));
 });
 
 router.post('/:userId/countries/:country', //ensureAuthenticated,
@@ -61,23 +58,19 @@ router.post('/:userId/countries/:country', //ensureAuthenticated,
         try {
             const userId = req.params.userId;
             const country = req.params.country;
-            console.log(userId, country);
             return models.User.findByIdAndUpdate(
                 userId,
                 {$push: {"countries": country}},
                 {safe: true, upsert: true}
             )
             .then((data) => {
-                console.log('data :', data);
                 return models.User.findById(userId);
             })
             .then((response) => {
-                console.log('response :', response);
                 res.json(response);
             });
         }
         catch(e) {
-            console.log('e :', e);
         }
     }
 );

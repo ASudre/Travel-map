@@ -28,6 +28,8 @@ const user = (state = {}, action) => {
             return Object.assign({}, state, {
                 countries: countries({}, action),
             });
+        case 'RECEIVE_CREATE_USER':
+            return action.user;
         default:
             return state;
     }

@@ -23,7 +23,22 @@ function saveCountry({ userId, country }) {
     });
 }
 
+
+function createUser({email, password}){
+    return fetch(`${config.server.baseUrl}/api/users`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            email,
+            password,
+        }),
+    });
+}
+
 export default {
     logIn,
     saveCountry,
+    createUser,
 };

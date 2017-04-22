@@ -56,6 +56,14 @@ export const requestLogIn = (email) => {
     };
 };
 
+export const requestCreateUser = (email) => {
+    return {
+        type: 'REQUEST_CREATE_USER',
+        email,
+    };
+};
+
+
 export const receiveLogIn = (user) => {
     return {
         type: 'RECEIVE_LOGIN',
@@ -63,6 +71,16 @@ export const receiveLogIn = (user) => {
         receivedAt: Date.now(),
     };
 };
+
+export const receiveCreateUser = (user) => {
+    return {
+        type: 'RECEIVE_CREATE_USER',
+        user,
+        receivedAt: Date.now(),
+    };
+};
+
+
 
 export const fetchUser = (userId) => {
     return (dispatch) => {
@@ -93,6 +111,18 @@ export const logIn = (email, password) => {
             });
     };
 };
+
+export const createUser = (email, password) => {
+    return (dispatch) => {
+        dispatch(requestCreateUser(email));
+        userAPIService.createUser({ email, password })
+            .then(data => data.json())
+            .then(user => {
+                return dispatch(receiveCreateUser(user));
+            });
+    };
+};
+
 
 function getUser(userId) {
     return {
