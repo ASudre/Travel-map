@@ -9,6 +9,7 @@ function buildCountriesArray(countries) {
 }
 
 function mapStateToProps(state) {
+    console.log(state);
     return {
         countries: buildCountriesArray(state.user.countries),
     };

@@ -76,9 +76,9 @@ export const saveCountry = (userId, country) => {
         dispatch(requestSaveCountry(userId, country));
         userAPIService.saveCountry({userId, country})
             .then(data => data.json())
-            .then(countries => {
-                dispatch(receiveSaveCountry(userId, countries));
-                return dispatch(refreshCountries(countries));
+            .then(user => {
+                dispatch(receiveSaveCountry(userId, user.countries));
+                return dispatch(refreshCountries(user.countries));
             });
     };
 };

@@ -18,7 +18,7 @@ let store = createStore(
     )
 );
 
-store.dispatch(fetchUser(1));
+store.dispatch(fetchUser('58e140908630b711d4950cc8'));
 
 render(
     <Provider store={store}>

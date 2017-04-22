@@ -1,15 +1,13 @@
 import config from '../config/config';
-import axios from 'axios';
 
 function logIn({ email, password }) {
-    return axios({
-        url: `${config.server.baseUrl}/api/users/login`,
+    return fetch(`${config.server.baseUrl}/api/users/login`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
         },
-        //credentials: 'same-origin',
-        data: JSON.stringify({
+        credentials: 'same-origin',
+        body: JSON.stringify({
             email,
             password,
         }),
