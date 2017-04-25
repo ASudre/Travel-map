@@ -1,7 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {orange500} from 'material-ui/styles/colors';
+import { orange500 } from 'material-ui/styles/colors';
 
 const style = {
     marginLeft: 20,
@@ -27,15 +27,15 @@ const InputCountry = ({addCountryClick, userId}) => {
                 <TextField ref={node => {
                     form.country = node;
                 }}
-                  hintText="Country"
-                  style={style}
+                           hintText="Country"
+                           style={style}
                     //errorText="Country not found."
                 />
                 <RaisedButton
-                  label="Save"
-                  primary
-                  style={style}
-                  type="submit"
+                    label="Save"
+                    primary
+                    style={style}
+                    type="submit"
                 />
             </form>
         </div>

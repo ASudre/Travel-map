@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { saveCountry } from '../actions';
+import { saveCountry } from '../actions/Countries/countriesActions';
 import InputCountry from '../components/Map/InputCountry';
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
     return {
         addCountryClick: (userId, country) => {
             dispatch(saveCountry(userId, country));
@@ -10,7 +10,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
     return {
         userId: state.user.id,
     };

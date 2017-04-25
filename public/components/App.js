@@ -1,15 +1,15 @@
 import React from 'react';
 import Footer from './Footer';
 import Map from './Map';
-import LogIn from "../containers/LogIn";
+import LogIn from '../containers/LogIn';
 
 class App extends React.Component {
 
-    constructor(props) {
+    constructor (props) {
         super(props);
     }
 
-    render() {
+    render () {
         return (
             <div>
                 <Map />

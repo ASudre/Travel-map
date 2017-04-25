@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import { logIn , createUser} from '../actions';
+import { createUser, logIn } from '../actions/User/userActions';
 import LogInForm from '../components/LogInForm';
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
     return {
         logIn: (email, password) => {
             dispatch(logIn(email, password));
         },
-        createUser: (email, password)  => {
+        createUser: (email, password) => {
             dispatch(createUser(email, password));
-        }
+        },
     };
-}
+};
 
 export default connect(null, mapDispatchToProps)(LogInForm);

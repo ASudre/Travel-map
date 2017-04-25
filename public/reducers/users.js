@@ -1,3 +1,5 @@
+import states from '../actions/User/userStates';
+
 const countries = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_COUNTRY':
@@ -14,9 +16,9 @@ const countries = (state = {}, action) => {
 
 const user = (state = {}, action) => {
     switch (action.type) {
-        case 'RECEIVE_USER':
+        case states.RECEIVE.USER:
             return action.user;
-        case 'RECEIVE_LOGIN':
+        case states.RECEIVE.LOGIN:
             return action.user;
         case 'RECEIVE_SAVE_COUNTRIES':
             return action.user;
@@ -28,7 +30,7 @@ const user = (state = {}, action) => {
             return Object.assign({}, state, {
                 countries: countries({}, action),
             });
-        case 'RECEIVE_CREATE_USER':
+        case states.RECEIVE.CREATE_USER:
             return action.user;
         default:
             return state;
