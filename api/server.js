@@ -8,6 +8,9 @@ import mongoSession from 'mongoose-express-session';
 import passport from 'passport';
 import localStrategy from './passport/strategy/localStrategy';
 
+import logger from './config/logger';
+import morgan from 'morgan';
+
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -23,6 +26,7 @@ const mongoStore = new MongooseStore({connection: mongoose});
 
 passport.use(localStrategy);
 
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms', { "stream": logger.stream }));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({limit: '50mb'}));
@@ -64,7 +68,7 @@ app.use(express.static(__dirname + '/../public'));
 
 app.listen(port);
 
-console.log(`The GraphQL Server is running on port ${port}`);
+logger.info(`Server running on port ${port}`);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
