@@ -7,24 +7,25 @@ const logIn = ({email, password}) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'same-origin',
+        credentials: 'include',
         body: JSON.stringify({
             email,
             password,
         }),
     };
 
-    return fetchUrl(`${config.server.baseUrl}/api/users/login`, params);
+    return fetchUrl(`${config.server.baseUrl}/api/user/login`, params);
 };
 
-const saveCountry = ({userId, country}) => {
+const saveCountry = (country) => {
     const params = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
+        credentials: 'include',
     };
-    return fetchUrl(`${config.server.baseUrl}/api/users/${userId}/countries/${country}`, params);
+    return fetchUrl(`${config.server.baseUrl}/api/user/countries/${country}`, params);
 };
 
 const createUser = ({email, password}) => {
@@ -38,7 +39,18 @@ const createUser = ({email, password}) => {
             password,
         }),
     };
-    return fetchUrl(`${config.server.baseUrl}/api/users`, params);
+    return fetchUrl(`${config.server.baseUrl}/api/user`, params);
+};
+
+const initUser = () => {
+    const params = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    };
+    return fetchUrl(`${config.server.baseUrl}/api/user`, params);
 };
 
 /************************
@@ -49,4 +61,5 @@ export default {
     logIn,
     saveCountry,
     createUser,
+    initUser,
 };

@@ -30,6 +30,12 @@ passport.deserializeUser((token, cb) => {
     }
 });
 
+router.get('/', ensureAuthenticated,
+    (req, res, next) => {
+        res.json(req.user);
+    }
+);
+
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) { return next(err); }
@@ -53,18 +59,17 @@ router.post('/', (req, res) => {
     return user.save().then(response => res.json(response));
 });
 
-router.post('/:userId/countries/:country', //ensureAuthenticated,
+router.post('/countries/:country', ensureAuthenticated,
     (req, res, next) => {
         try {
-            const userId = req.params.userId;
             const country = req.params.country;
             return models.User.findByIdAndUpdate(
-                userId,
+                req.user.id,
                 {$push: {"countries": country}},
                 {safe: true, upsert: true}
             )
             .then((data) => {
-                return models.User.findById(userId);
+                return models.User.findById(req.user.id);
             })
             .then((response) => {
                 res.json(response);

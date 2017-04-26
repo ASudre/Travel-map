@@ -4,16 +4,10 @@ import InputCountry from '../components/Map/InputCountry';
 
 function mapDispatchToProps (dispatch) {
     return {
-        addCountryClick: (userId, country) => {
-            dispatch(saveCountry(userId, country));
+        addCountryClick: (country) => {
+            dispatch(saveCountry(country));
         },
     };
 }
 
-function mapStateToProps (state) {
-    return {
-        userId: state.user.id,
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(InputCountry);
+export default connect(null, mapDispatchToProps)(InputCountry);

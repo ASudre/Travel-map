@@ -6,13 +6,13 @@ import state from './countriesStateActions';
  ************************
  */
 
-const saveCountry = (userId, country) => {
+const saveCountry = (country) => {
     return (dispatch) => {
-        dispatch(state.requestSaveCountry(userId, country));
-        userAPIService.saveCountry({userId, country})
+        dispatch(state.requestSaveCountry(country));
+        userAPIService.saveCountry(country)
             .then(data => data.json())
             .then(user => {
-                return dispatch(state.receiveSaveCountry(userId, user.countries));
+                return dispatch(state.receiveSaveCountry(user.countries));
             });
     };
 };

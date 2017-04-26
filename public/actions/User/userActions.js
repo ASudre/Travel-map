@@ -23,24 +23,16 @@ const logIn = (email, password) => {
     };
 };
 
-const fetchUser = (userId) => {
+const fetchUser = () => {
     return (dispatch) => {
-        dispatch(state.requestUser(userId));
-        return dispatch(state.receiveUser(getUser(userId)));
-    };
-};
-
-/************************
- * Private functions    *
- ************************
- */
-const getUser = (userId) => {
-    return {
-        id: userId,
-        countries: [
-            'France',
-            'Germany',
-        ],
+        dispatch(state.requestUser());
+        userAPIService.initUser()
+            .then(data => {
+                return data.status === 200 ? data.json() : {};
+            })
+            .then(user => {
+                return dispatch(state.receiveUser(user));
+            });
     };
 };
 
