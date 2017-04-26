@@ -1,5 +1,10 @@
-import userAPIService from '../../services/userAPIService';
+import userAPIService from '../../../services/userAPIService';
 import state from './countriesStateActions';
+
+/************************
+ * Exports              *
+ ************************
+ */
 
 const saveCountry = (userId, country) => {
     return (dispatch) => {
@@ -7,16 +12,10 @@ const saveCountry = (userId, country) => {
         userAPIService.saveCountry({userId, country})
             .then(data => data.json())
             .then(user => {
-                dispatch(state.receiveSaveCountry(userId, user.countries));
-                return dispatch(state.refreshCountries(user.countries));
+                return dispatch(state.receiveSaveCountry(userId, user.countries));
             });
     };
 };
-
-/************************
- * Exports              *
- ************************
- */
 export {
     saveCountry,
 };

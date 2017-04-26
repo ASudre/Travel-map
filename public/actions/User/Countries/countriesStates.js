@@ -1,5 +1,4 @@
-const RECEIVE = 'RECEIVE_';
-const REQUEST = 'REQUEST_';
+import { RECEIVE, REQUEST } from '../../constants';
 
 const countriesStates = {
     REQUEST: {

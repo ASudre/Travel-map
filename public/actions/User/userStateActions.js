@@ -25,7 +25,6 @@ const receiveLogIn = (user) => {
     return {
         type: userStates.RECEIVE.LOGIN,
         user,
-        receivedAt: Date.now(),
     };
 };
 
@@ -33,7 +32,6 @@ const receiveCreateUser = (user) => {
     return {
         type: userStates.RECEIVE.CREATE_USER,
         user,
-        receivedAt: Date.now(),
     };
 };
 
@@ -41,7 +39,6 @@ const receiveUser = (user) => {
     return {
         type: userStates.RECEIVE.USER,
         user,
-        receivedAt: Date.now(),
     };
 };
 

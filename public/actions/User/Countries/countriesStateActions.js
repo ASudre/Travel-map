@@ -1,22 +1,5 @@
 import states from './countriesStates';
 
-let nextCountryId = 0;
-
-const addCountry = (country) => {
-    return {
-        type: 'ADD_COUNTRY',
-        id: nextCountryId++,
-        country,
-    };
-};
-
-const refreshCountries = (countries) => {
-    return {
-        type: 'REFRESH_COUNTRIES',
-        countries,
-    };
-};
-
 const requestSaveCountry = (userId, country) => {
     return {
         type: states.REQUEST.SAVE_COUNTRY,
@@ -41,6 +24,4 @@ const receiveSaveCountry = (userId, countries) => {
 export default{
     receiveSaveCountry,
     requestSaveCountry,
-    refreshCountries,
-    addCountry,
 };
