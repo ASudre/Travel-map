@@ -17,6 +17,18 @@ const logIn = ({email, password}) => {
     return fetchUrl(`${config.server.baseUrl}/api/user/login`, params);
 };
 
+const logOut = () => {
+    const params = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    };
+
+    return fetchUrl(`${config.server.baseUrl}/api/user/logout`, params);
+};
+
 const saveCountry = (country) => {
     const params = {
         method: 'POST',
@@ -59,6 +71,7 @@ const initUser = () => {
  */
 export default {
     logIn,
+    logOut,
     saveCountry,
     createUser,
     initUser,

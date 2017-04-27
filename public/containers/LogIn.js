@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createUser, logIn } from '../actions/User/userActions';
-import LogInForm from '../components/LogInForm';
+import LogInForm from '../components/Authentication/LogInForm';
 
 const mapDispatchToProps = (dispatch) => {
     return {

@@ -14,6 +14,12 @@ const requestLogIn = (email) => {
     };
 };
 
+const requestLogOut = () => {
+    return {
+        type: userStates.REQUEST.LOGOUT,
+    };
+};
+
 const requestCreateUser = (email) => {
     return {
         type: userStates.REQUEST.CREATE_USER,
@@ -25,6 +31,13 @@ const receiveLogIn = (user) => {
     return {
         type: userStates.RECEIVE.LOGIN,
         user,
+    };
+};
+
+const receiveLogOut = (user) => {
+    return {
+        type: userStates.RECEIVE.LOGOUT,
+        user: user,
     };
 };
 
@@ -49,8 +62,10 @@ const receiveUser = (user) => {
 export default {
     receiveCreateUser,
     receiveLogIn,
+    receiveLogOut,
     requestCreateUser,
     requestLogIn,
+    requestLogOut,
     receiveUser,
     requestUser,
 };

@@ -4,7 +4,7 @@ import state from './userStateActions';
 const createUser = (email, password) => {
     return (dispatch) => {
         dispatch(state.requestCreateUser(email));
-        userAPIService.createUser({email, password})
+        return userAPIService.createUser({email, password})
             .then(data => data.json())
             .then(user => {
                 return dispatch(state.receiveCreateUser(user));
@@ -15,7 +15,7 @@ const createUser = (email, password) => {
 const logIn = (email, password) => {
     return (dispatch) => {
         dispatch(state.requestLogIn(email));
-        userAPIService.logIn({email, password})
+        return userAPIService.logIn({email, password})
             .then(data => data.json())
             .then(user => {
                 return dispatch(state.receiveLogIn(user));
@@ -23,10 +23,21 @@ const logIn = (email, password) => {
     };
 };
 
+const logOut = () => {
+    return (dispatch) => {
+        dispatch(state.requestLogOut());
+        return userAPIService.logOut()
+            .then(data => data.json())
+            .then(user => {
+                return dispatch(state.receiveLogOut(user));
+            });
+    };
+};
+
 const fetchUser = () => {
     return (dispatch) => {
         dispatch(state.requestUser());
-        userAPIService.initUser()
+        return userAPIService.initUser()
             .then(data => {
                 return data.status === 200 ? data.json() : {};
             })
@@ -43,5 +54,6 @@ const fetchUser = () => {
 export {
     createUser,
     logIn,
+    logOut,
     fetchUser,
 };

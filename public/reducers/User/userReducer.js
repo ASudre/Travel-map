@@ -7,6 +7,8 @@ const user = (state = {}, action) => {
             return action.user;
         case states.RECEIVE.LOGIN:
             return action.user;
+        case states.RECEIVE.LOGOUT:
+            return action.user;
         case states.RECEIVE.CREATE_USER:
             return action.user;
         case countryStates.RECEIVE.SAVE_COUNTRY:

@@ -53,6 +53,11 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
+router.post('/logout', (req, res, next) => {
+    req.logOut();
+    return res.json({});
+});
+
 router.post('/', (req, res) => {
     const {email, password} = req.body;
     const user = new models.User({ email, password });
@@ -71,8 +76,8 @@ router.post('/countries/:country', ensureAuthenticated,
             .then((data) => {
                 return models.User.findById(req.user.id);
             })
-            .then((response) => {
-                res.json(response);
+            .then((user) => {
+                res.json({ countries: user.countries });
             });
         }
         catch(e) {
