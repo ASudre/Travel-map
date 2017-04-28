@@ -1,21 +1,17 @@
 import states from './countriesStates';
 
-const requestSaveCountry = (country) => {
-    return {
-        type: states.REQUEST.SAVE_COUNTRY,
-        country,
-    };
-};
+const requestSaveCountry = country => ({
+    type: states.REQUEST.SAVE_COUNTRY,
+    country,
+});
 
-const receiveSaveCountry = (countries) => {
-    return {
-        type: states.RECEIVE.SAVE_COUNTRY,
-        countries,
-        receivedAt: Date.now(),
-    };
-};
+const receiveSaveCountry = countries => ({
+    type: states.RECEIVE.SAVE_COUNTRY,
+    countries,
+    receivedAt: Date.now(),
+});
 
-/************************
+/** **********************
  * Exports              *
  ************************
  */

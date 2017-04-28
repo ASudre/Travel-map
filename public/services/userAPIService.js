@@ -1,7 +1,7 @@
 import config from '../config/config';
 import { fetchUrl } from './utils';
 
-const logIn = ({email, password}) => {
+const logIn = ({ email, password }) => {
     const params = {
         method: 'POST',
         headers: {
@@ -40,7 +40,7 @@ const saveCountry = (country) => {
     return fetchUrl(`${config.server.baseUrl}/api/user/countries/${country}`, params);
 };
 
-const createUser = ({email, password}) => {
+const createUser = ({ email, password }) => {
     const params = {
         method: 'POST',
         headers: {
@@ -65,7 +65,7 @@ const initUser = () => {
     return fetchUrl(`${config.server.baseUrl}/api/user`, params);
 };
 
-/************************
+/** **********************
  * Exports              *
  ************************
  */

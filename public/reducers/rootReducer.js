@@ -5,4 +5,8 @@ const travelMapApp = combineReducers({
     user,
 });
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export default travelMapApp;

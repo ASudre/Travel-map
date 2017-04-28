@@ -8,28 +8,32 @@ const style = {
 
 class LogOutForm extends React.Component {
 
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit (event) {
+    handleSubmit(event) {
         event.preventDefault();
         this.props.logOut();
     }
 
-    render () {
+    render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <RaisedButton
                     label="Log out"
                     primary
                     style={style}
-                    type="submit"/>
+                    type="submit"
+                />
             </form>
         );
     }
-
 }
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export default LogOutForm;

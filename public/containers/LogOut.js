@@ -10,4 +10,8 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export default connect(null, mapDispatchToProps)(LogOutForm);

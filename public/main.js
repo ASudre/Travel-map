@@ -1,16 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { applyMiddleware, compose, createStore } from 'redux';
-import travelMapApp from './reducers/rootReducer';
 import thunkMiddleware from 'redux-thunk';
-import App from './components/App';
-import { fetchUser } from './actions/User/userActions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { applyMiddleware, compose, createStore } from 'redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import travelMapApp from './reducers/rootReducer';
+import { fetchUser } from './actions/User/userActions';
+import App from './components/App';
+
 injectTapEventPlugin();
 
-let store = createStore(
+const store = createStore(
     travelMapApp,
     compose(
         applyMiddleware(thunkMiddleware),

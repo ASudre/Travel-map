@@ -5,11 +5,7 @@ import Authentication from '../containers/Authentication';
 
 class App extends React.Component {
 
-    constructor (props) {
-        super(props);
-    }
-
-    render () {
+    render() {
         return (
             <div>
                 <Map />
@@ -18,7 +14,10 @@ class App extends React.Component {
             </div>
         );
     }
-
 }
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export default App;

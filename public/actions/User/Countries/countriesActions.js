@@ -1,21 +1,17 @@
 import userAPIService from '../../../services/userAPIService';
 import state from './countriesStateActions';
 
-/************************
+const saveCountry = country => (dispatch) => {
+    dispatch(state.requestSaveCountry(country));
+    userAPIService.saveCountry(country)
+        .then(data => data.json())
+        .then(user => dispatch(state.receiveSaveCountry(user.countries)));
+};
+
+/** **********************
  * Exports              *
  ************************
  */
-
-const saveCountry = (country) => {
-    return (dispatch) => {
-        dispatch(state.requestSaveCountry(country));
-        userAPIService.saveCountry(country)
-            .then(data => data.json())
-            .then(user => {
-                return dispatch(state.receiveSaveCountry(user.countries));
-            });
-    };
-};
-export {
+export default {
     saveCountry,
 };

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import LogOut from './LogOut';
 import LogIn from './LogIn';
 
-const Authentication = ({isLoggedIn}) => {
+const Authentication = ({ isLoggedIn }) => {
     return (isLoggedIn ? <LogOut /> : <LogIn />);
 };
 
@@ -13,4 +13,8 @@ function mapStateToProps(state) {
     };
 }
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export default connect(mapStateToProps, null)(Authentication);

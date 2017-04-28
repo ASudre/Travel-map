@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import states from '../../../actions/User/Countries/countriesStates';
 
 const countries = (state = [], action) => {
@@ -11,6 +12,10 @@ const countries = (state = [], action) => {
     }
 };
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export {
     countries,
     states,

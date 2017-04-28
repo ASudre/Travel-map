@@ -1,5 +1,6 @@
+/* eslint-disable indent */
 import states from '../../actions/User/userStates';
-import { states as countryStates, countries } from './Country/countryReducer';
+import { countries, states as countryStates } from './Country/countryReducer';
 
 const user = (state = {}, action) => {
     switch (action.type) {
@@ -22,4 +23,8 @@ const user = (state = {}, action) => {
     }
 };
 
+/** **********************
+ * Exports              *
+ ************************
+ */
 export default user;

@@ -1,61 +1,45 @@
 import userStates from './userStates';
 
-const requestUser = (userId) => {
-    return {
-        type: userStates.REQUEST.USER,
-        userId,
-    };
-};
+const requestUser = userId => ({
+    type: userStates.REQUEST.USER,
+    userId,
+});
 
-const requestLogIn = (email) => {
-    return {
-        type: userStates.REQUEST.LOGIN,
-        email,
-    };
-};
+const requestLogIn = email => ({
+    type: userStates.REQUEST.LOGIN,
+    email,
+});
 
-const requestLogOut = () => {
-    return {
-        type: userStates.REQUEST.LOGOUT,
-    };
-};
+const requestLogOut = () => ({
+    type: userStates.REQUEST.LOGOUT,
+});
 
-const requestCreateUser = (email) => {
-    return {
-        type: userStates.REQUEST.CREATE_USER,
-        email,
-    };
-};
+const requestCreateUser = email => ({
+    type: userStates.REQUEST.CREATE_USER,
+    email,
+});
 
-const receiveLogIn = (user) => {
-    return {
-        type: userStates.RECEIVE.LOGIN,
-        user,
-    };
-};
+const receiveLogIn = user => ({
+    type: userStates.RECEIVE.LOGIN,
+    user,
+});
 
-const receiveLogOut = (user) => {
-    return {
-        type: userStates.RECEIVE.LOGOUT,
-        user: user,
-    };
-};
+const receiveLogOut = user => ({
+    type: userStates.RECEIVE.LOGOUT,
+    user,
+});
 
-const receiveCreateUser = (user) => {
-    return {
-        type: userStates.RECEIVE.CREATE_USER,
-        user,
-    };
-};
+const receiveCreateUser = user => ({
+    type: userStates.RECEIVE.CREATE_USER,
+    user,
+});
 
-const receiveUser = (user) => {
-    return {
-        type: userStates.RECEIVE.USER,
-        user,
-    };
-};
+const receiveUser = user => ({
+    type: userStates.RECEIVE.USER,
+    user,
+});
 
-/************************
+/** **********************
  * Exports              *
  ************************
  */
