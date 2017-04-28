@@ -14,18 +14,18 @@ class LogOutForm extends React.Component {
     }
 
     handleSubmit (event) {
-        this.props.logOut();
         event.preventDefault();
+        this.props.logOut();
     }
 
     render () {
         return (
             <form onSubmit={this.handleSubmit}>
                 <RaisedButton
-                  label="Log out"
-                  primary
-                  style={style}
-                  type="submit" />
+                    label="Log out"
+                    primary
+                    style={style}
+                    type="submit"/>
             </form>
         );
     }

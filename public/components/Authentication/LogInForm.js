@@ -29,13 +29,13 @@ class LogInForm extends React.Component {
     }
 
     handleSubmit (event) {
-        this.props.logIn(this.state.email, this.state.password);
         event.preventDefault();
+        this.props.logIn(this.state.email, this.state.password);
     }
 
     createUser (event) {
-        this.props.createUser(this.state.email, this.state.password);
         event.preventDefault();
+        this.props.createUser(this.state.email, this.state.password);
     }
 
     render () {
