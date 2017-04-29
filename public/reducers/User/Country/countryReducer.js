@@ -7,6 +7,8 @@ const countries = (state = [], action) => {
             return action.countries;
         case states.REQUEST.SAVE_COUNTRY:
             return state;
+        case states.ADD_COUNTRY:
+            return [...(state || []), action.country];
         default:
             return state;
     }

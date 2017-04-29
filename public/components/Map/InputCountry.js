@@ -20,7 +20,7 @@ class InputCountry extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.addCountryClick(this.state.country);
+        this.props.addCountryClick(this.state.country, this.props.isLoggedIn);
     }
 
     render() {
@@ -32,7 +32,7 @@ class InputCountry extends React.Component {
                     style={style}
                 />
                 <RaisedButton
-                    label="Save"
+                    label={this.props.isLoggedIn ? 'Save' : 'Add'}
                     primary
                     style={style}
                     type="submit"
@@ -44,6 +44,7 @@ class InputCountry extends React.Component {
 
 InputCountry.propTypes = {
     addCountryClick: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
 };
 
 /** **********************

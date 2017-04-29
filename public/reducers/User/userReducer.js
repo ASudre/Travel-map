@@ -14,6 +14,7 @@ const user = (state = {}, action) => {
             return action.user;
         case countryStates.RECEIVE.SAVE_COUNTRY:
         case countryStates.REQUEST.SAVE_COUNTRY:
+        case countryStates.ADD_COUNTRY:
             return {
                 ...state,
                 countries: countries(state.countries, action),

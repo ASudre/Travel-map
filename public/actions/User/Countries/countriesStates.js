@@ -7,6 +7,7 @@ const countriesStates = {
     RECEIVE: {
         SAVE_COUNTRY: `${RECEIVE}SAVE_COUNTRY`,
     },
+    ADD_COUNTRY: 'ADD_COUNTRY',
 };
 
 /** **********************
