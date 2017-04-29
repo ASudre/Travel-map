@@ -1,15 +1,13 @@
 const ensureAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
-    } else {
-        res.sendStatus(403);
     }
-
+    return res.sendStatus(403);
 };
 
 
-////////////////////////////////////////////////////////////////////////////////////
-// Exports
-////////////////////////////////////////////////////////////////////////////////////
-
+/** *********************
+ * Export               *
+ ************************
+ */
 export default ensureAuthenticated;

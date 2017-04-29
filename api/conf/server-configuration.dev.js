@@ -1,11 +1,12 @@
 export default {
+    environment: process.env.NODE_ENV ? process.env.NODE_ENV : 'dev',
     authentication: {
         jwtSecret: 'Pw2HwgGdor8ZDWT4kRJmM3qxHxCifasm7PnYSSgR',
         issuer: 'travelMap',
     },
-    storage: {
+    database: {
         type: 'mongodb',
-        baseUrl: 'localhost',
+        host: 'localhost',
         port: 27017,
         database: 'travel-map',
     },
