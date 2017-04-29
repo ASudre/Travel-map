@@ -1,5 +1,5 @@
 import config from '../config/config';
-import { fetchUrl } from './utils';
+import fetchUrl from './utils';
 
 const logIn = ({ email, password }) => {
     const params = {

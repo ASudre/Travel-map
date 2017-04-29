@@ -1,5 +1,6 @@
 {
   "extends": "airbnb",
+  "globals": { "fetch": false },
   "rules": {
     "indent": [
       2,

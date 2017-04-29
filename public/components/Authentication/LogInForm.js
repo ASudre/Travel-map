@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RaisedButton, TextField } from 'material-ui';
 
 const style = {
@@ -70,6 +71,11 @@ class LogInForm extends React.Component {
     }
 
 }
+
+LogInForm.propTypes = {
+    logIn: PropTypes.func.isRequired,
+    createUser: PropTypes.func.isRequired,
+};
 
 /** **********************
  * Exports              *

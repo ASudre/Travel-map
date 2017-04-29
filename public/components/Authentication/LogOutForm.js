@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RaisedButton } from 'material-ui';
 
 const style = {
@@ -31,6 +32,10 @@ class LogOutForm extends React.Component {
         );
     }
 }
+
+LogOutForm.propTypes = {
+    logOut: PropTypes.func.isRequired,
+};
 
 /** **********************
  * Exports              *
