@@ -11,6 +11,11 @@ const receiveSaveCountry = countries => ({
     receivedAt: Date.now(),
 });
 
+const addCountry = country => ({
+    type: states.ADD_COUNTRY,
+    country,
+});
+
 /** **********************
  * Exports              *
  ************************
@@ -18,4 +23,5 @@ const receiveSaveCountry = countries => ({
 export default{
     receiveSaveCountry,
     requestSaveCountry,
+    addCountry,
 };

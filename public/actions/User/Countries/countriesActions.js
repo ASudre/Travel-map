@@ -8,8 +8,15 @@ const saveCountry = country => (dispatch) => {
         .then(user => dispatch(state.receiveSaveCountry(user.countries)));
 };
 
+const addCountry = country => (dispatch) => {
+    dispatch(state.addCountry(country));
+};
+
 /** *********************
  * Exports              *
  ************************
  */
-export default saveCountry;
+export {
+    saveCountry,
+    addCountry,
+};

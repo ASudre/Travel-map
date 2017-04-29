@@ -25,12 +25,7 @@ const logOut = () => (dispatch) => {
 const fetchUser = () => (dispatch) => {
     dispatch(state.requestUser());
     return userAPIService.initUser()
-        .then((data) => {
-            if (data.status === 200) {
-                return data.json();
-            }
-            return {};
-        })
+        .then(data => (data.status === 200 ? data.json() : {}))
         .then(user => dispatch(state.receiveUser(user)));
 };
 
