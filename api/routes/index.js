@@ -1,7 +1,3 @@
-/** *********************
- * Imports              *
- ************************
- */
 import express from 'express';
 import userRoute from './userRoute';
 

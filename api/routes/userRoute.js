@@ -17,16 +17,15 @@ passport.deserializeUser((token, cb) => {
             { issuer: conf.authentication.issuer },
         );
         return models.User.findById(payload.sub)
-        .then((err, user) => {
-            if (err) {
-                return cb(err);
-            }
-            return {
-                id: user._id, // eslint-disable-line no-underscore-dangle
-                email: user.email,
-                countries: user.countries,
-            };
-        });
+        .then(user =>
+            cb(null,
+                {
+                    id: user._id, // eslint-disable-line no-underscore-dangle
+                    email: user.email,
+                    countries: user.countries,
+                },
+            ),
+        );
     } catch (e) {
         return cb(e);
     }

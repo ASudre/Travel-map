@@ -1,7 +1,3 @@
-/** **********************
- * Imports              *
- ************************
- */
 import LocalStrategy from 'passport-local';
 import jwt from 'jsonwebtoken';
 import conf from '../../conf/server-configuration';

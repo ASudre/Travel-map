@@ -1,7 +1,3 @@
-/** *********************
- * Imports              *
- ************************
- */
 import express from 'express';
 import mongoose from 'mongoose';
 import mongoSession from 'mongoose-express-session';
