@@ -1,49 +1,52 @@
 import express from 'express';
 import passport from 'passport';
-import models from '../models';
-import conf from '../config/conf';
 import jwt from 'jsonwebtoken';
+import models from '../models';
+import conf from '../conf/server-configuration';
 import ensureAuthenticated from '../passport/security';
 
-const router = express.Router({mergeParams: true});
+const router = express.Router({ mergeParams: true });
 
-passport.serializeUser((user, cb) => {
-    cb(null, user.token);
-});
+passport.serializeUser((user, cb) => cb(null, user.token));
 
 passport.deserializeUser((token, cb) => {
     try {
-        const payload = jwt.verify(token, conf.authentication.jwtSecret, {issuer: conf.authentication.issuer});
-        models.User.findById(payload.sub, (err, user) => {
-            if (err) {
-                return cb(err);
-            }
-            cb(null, {
-                id: user._id,
-                email: user.email,
-                countries: user.countries,
-            });
-        });
-    }
-    catch(e) {
-        cb(e);
+        const payload = jwt.verify(
+            token,
+            conf.authentication.jwtSecret,
+            { issuer: conf.authentication.issuer },
+        );
+        return models.User.findById(payload.sub)
+        .then(user =>
+            cb(null,
+                {
+                    id: user._id, // eslint-disable-line no-underscore-dangle
+                    email: user.email,
+                    countries: user.countries,
+                },
+            ),
+        );
+    } catch (e) {
+        return cb(e);
     }
 });
 
 router.get('/', ensureAuthenticated,
-    (req, res, next) => {
-        res.json(req.user);
-    }
+    (req, res) => res.json(req.user),
 );
 
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-        if (err) { return next(err); }
+    passport.authenticate('local', (err, user) => {
+        if (err) {
+            return next(err);
+        }
         if (!user) {
             return res.sendStatus(403);
         }
-        req.logIn(user, (err) => {
-            if (err) { return next(err); }
+        return req.logIn(user, (loginErr) => {
+            if (err) {
+                return next(loginErr);
+            }
             return res.json({
                 id: user.id,
                 email: user.email,
@@ -53,36 +56,34 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-router.post('/logout', (req, res, next) => {
+router.post('/logout', (req, res) => {
     req.logOut();
     return res.json({});
 });
 
 router.post('/', (req, res) => {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     const user = new models.User({ email, password });
     return user.save().then(response => res.json(response));
 });
 
 router.post('/countries/:country', ensureAuthenticated,
-    (req, res, next) => {
+    (req, res) => {
         try {
             const country = req.params.country;
             return models.User.findByIdAndUpdate(
                 req.user.id,
-                {$push: {"countries": country}},
-                {safe: true, upsert: true}
+                { $push: { countries: country } },
+                { safe: true, upsert: true },
             )
-            .then((data) => {
-                return models.User.findById(req.user.id);
-            })
+            .then(() => models.User.findById(req.user.id))
             .then((user) => {
                 res.json({ countries: user.countries });
             });
+        } catch (e) {
+            throw new Error(e);
         }
-        catch(e) {
-        }
-    }
+    },
 );
 
 export default router;
