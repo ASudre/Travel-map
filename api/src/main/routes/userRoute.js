@@ -2,7 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import models from '../models';
-import conf from '../conf/server-configuration';
+import conf from '../../../conf/server-configuration';
 import ensureAuthenticated from '../passport/security';
 
 const router = express.Router({ mergeParams: true });

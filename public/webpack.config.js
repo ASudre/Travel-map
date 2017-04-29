@@ -1,7 +1,7 @@
 const path = require('path');
 
 const config = {
-    entry: './main.js',
+    entry: './src/main/main.js',
 
     output: {
         path: path.resolve(__dirname, './dist/assets'),

@@ -1,4 +1,4 @@
-import config from '../config/config';
+import config from '../../../conf/webapp-configuration';
 import fetchUrl from './utils';
 
 const logIn = ({ email, password }) => {

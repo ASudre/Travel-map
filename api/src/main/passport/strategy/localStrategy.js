@@ -1,6 +1,6 @@
 import LocalStrategy from 'passport-local';
 import jwt from 'jsonwebtoken';
-import conf from '../../conf/server-configuration';
+import conf from '../../../../conf/server-configuration';
 import models from '../../models';
 
 export default new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, (email, password, done) =>
