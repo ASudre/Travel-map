@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Chart } from 'react-google-charts';
 
 class GeoChart extends React.Component {
@@ -21,6 +22,10 @@ class GeoChart extends React.Component {
         );
     }
 }
+
+GeoChart.propTypes = {
+    countries: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+};
 
 /** **********************
  * Exports              *

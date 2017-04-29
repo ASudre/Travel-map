@@ -2,13 +2,12 @@ import { connect } from 'react-redux';
 import { logOut } from '../actions/User/userActions';
 import LogOutForm from '../components/Authentication/LogOutForm';
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logOut: () => {
-            dispatch(logOut());
-        },
-    };
-};
+const mapDispatchToProps = dispatch =>
+({
+    logOut: () => {
+        dispatch(logOut());
+    },
+});
 
 /** **********************
  * Exports              *

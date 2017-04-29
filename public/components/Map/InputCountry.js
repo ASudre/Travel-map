@@ -1,6 +1,6 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
+import { RaisedButton, TextField } from 'material-ui';
 
 const style = {
     marginLeft: 20,
@@ -41,6 +41,10 @@ class InputCountry extends React.Component {
         );
     }
 }
+
+InputCountry.propTypes = {
+    addCountryClick: PropTypes.func.isRequired,
+};
 
 /** **********************
  * Exports              *
