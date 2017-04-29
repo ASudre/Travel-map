@@ -32,7 +32,7 @@ class InputCountry extends React.Component {
                     style={style}
                 />
                 <RaisedButton
-                    label="Save"
+                    label={this.props.isLoggedIn ? 'Save' : 'Add'}
                     primary
                     style={style}
                     type="submit"
