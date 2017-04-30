@@ -65,4 +65,8 @@ typings/
 # dotenv environment variables file
 .env
 
-
+api/launch\.sh
+api/yarn\.lock
+public/yarn\.lock
+public/launch\.sh
+travel-map\.iml

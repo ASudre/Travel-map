@@ -9,7 +9,7 @@ import cors from 'cors';
 import passport from 'passport';
 
 import conf from '../../conf/server-configuration';
-import routes from './routes';
+import routes from './routes/routes';
 import localStrategy from './passport/strategy/localStrategy';
 import logger from '../../conf/logger';
 

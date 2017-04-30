@@ -1,7 +1,10 @@
 {
   "extends": "airbnb",
-  "globals": { "fetch": false },
+  "globals": {
+    "fetch": false
+  },
   "rules": {
+    "no-underscore-dangle": 0,
     "indent": [
       2,
       4

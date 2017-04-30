@@ -1,12 +1,12 @@
 {
-  "name": "react_flux",
-  "version": "1.0.0",
-  "description": "React project",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "../node_modules/.bin/webpack-dev-server --hot",
-    "build": "../node_modules/.bin/webpack -p"
-  },
-  "author": "Arthur Sudre",
-  "license": "ISC"
+    "name": "react_flux",
+    "version": "1.0.0",
+    "description": "React project",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "../node_modules/.bin/webpack-dev-server --hot",
+        "build": "../node_modules/.bin/webpack -p"
+    },
+    "author": "Arthur Sudre",
+    "license": "ISC"
 }
