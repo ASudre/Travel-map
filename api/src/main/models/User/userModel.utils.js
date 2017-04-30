@@ -1,22 +1,8 @@
-import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 const SALT_WORK_FACTOR = 10;
 
-const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        index: { unique: true },
-    },
-    password: { type: String, required: true },
-    countries: [
-        String,
-    ],
-});
-
-userSchema.pre('save', function preSave(next) {
+const preSave = function preSave(next) {
     const user = this;
 
     // only hash the password if it has been modified (or is new)
@@ -41,9 +27,9 @@ userSchema.pre('save', function preSave(next) {
             return next();
         });
     });
-});
+};
 
-userSchema.methods.comparePassword = function comparePassword(candidatePassword) {
+const comparePassword = function comparePassword(candidatePassword) {
     return new Promise((resolve, reject) => {
         bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
             if (err) {
@@ -55,4 +41,11 @@ userSchema.methods.comparePassword = function comparePassword(candidatePassword)
     });
 };
 
-module.exports = mongoose.model('User', userSchema);
+/** *********************
+ * Export               *
+ ************************
+ */
+export default {
+    preSave,
+    comparePassword,
+};
