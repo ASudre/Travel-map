@@ -1,16 +1,17 @@
 import passport from 'passport';
 import User from '../../models/User/User';
+import logger from '../../../../conf/logger';
 
 const login = (req, res, next) => {
-    passport.authenticate('local', (err, user) => {
+    passport.authenticate('local', (err, user, info) => {
         if (err) {
             return next(err);
         }
         if (!user) {
-            return res.sendStatus(403);
+            return res.status(403).json(info);
         }
         return req.logIn(user, (loginErr) => {
-            if (err) {
+            if (loginErr) {
                 return next(loginErr);
             }
             return res.json({
@@ -30,7 +31,15 @@ const logout = (req, res) => {
 const createUser = (req, res) => {
     const { email, password } = req.body;
     const user = new User({ email, password });
-    return user.save().then(response => res.json(response));
+    return user.save()
+        .then(response => res.json(response))
+        .catch((error) => {
+            logger.error(`Error while trying to create a user ${error}`);
+            if (error.code === 11000) {
+                return res.status(500).json({ email: 'User already existing' });
+            }
+            return res.status(500).json({ _error: `Error code : ${error.code}` });
+        });
 };
 
 const createCountry = (req, res) => {

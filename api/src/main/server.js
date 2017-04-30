@@ -66,11 +66,11 @@ app.listen(port);
 
 logger.info(`Server running on port ${port} on ${conf.environment}`);
 
-app.use((err, req, res) => {
-    logger.error(`Error 500, stack : ${err.stack}`);
-    res.status(500).send(`An error occurred : ${err.message}`);
-});
-
 app.use((req, res) => {
     res.status(404).send('Endpoint not found.');
+});
+
+app.use((err, req, res) => {
+    logger.error(`Error 500, stack : ${err.stack}`);
+    res.sendStatus(500).send(`An error occurred : ${err.message}`);
 });

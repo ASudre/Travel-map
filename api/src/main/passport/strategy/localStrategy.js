@@ -7,7 +7,7 @@ export default new LocalStrategy({ usernameField: 'email', passwordField: 'passw
     User.findOne({ email })
         .then((user) => {
             if (!user) {
-                return done(null, false, { message: 'User not found', email });
+                return done(null, false, { email: 'Account not found' });
             }
             return user.comparePassword(password)
                 .then((isMatch) => {
@@ -30,7 +30,7 @@ export default new LocalStrategy({ usernameField: 'email', passwordField: 'passw
                             token,
                         });
                     }
-                    return done(null, false, { message: 'Incorrect password', email });
+                    return done(null, false, { password: 'Incorrect password' });
                 });
         }),
 );
