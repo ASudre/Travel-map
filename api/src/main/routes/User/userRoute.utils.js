@@ -1,4 +1,5 @@
 import passport from 'passport';
+import logger from '../../../../conf/logger';
 import User from '../../models/User/User';
 
 const login = (req, res, next) => {
@@ -30,7 +31,11 @@ const logout = (req, res) => {
 const createUser = (req, res) => {
     const { email, password } = req.body;
     const user = new User({ email, password });
-    return user.save().then(response => res.json(response));
+    return user.save().then(response => res.json(response))
+    .catch((e) => {
+        logger.error(e);
+        res.sendStatus(400);
+    });
 };
 
 const createCountry = (req, res) => {

@@ -16,7 +16,7 @@ export default {
         type: 'mongodb',
         host: 'localhost',
         port: 27017,
-        database: 'travel-map',
+        database: 'travel-map-test',
     },
     session: {
         secret: 'QpoXwHS3kiCd549CxhWYtTKXMcpM88NP849nwcWD',

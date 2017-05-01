@@ -1,5 +1,9 @@
 export default {
     environment: process.env.NODE_ENV,
+    server: {
+        baseUrl: process.env.SERVER_URL,
+        port: process.env.SERVER_PORT,
+    },
     authentication: {
         jwtSecret: process.env.JWT_SECRET,
         issuer: 'travelMap',

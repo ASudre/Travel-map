@@ -13,6 +13,7 @@ const config = {
         inline: true,
         port: 8081,
         contentBase: path.resolve(__dirname, '.'),
+        public: 'travel.map.com:8081',
     },
 
     devtool: 'sourceMap',
