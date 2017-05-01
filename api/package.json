@@ -2,12 +2,12 @@
     "name": "travelmap.com",
     "version": "1.0.0",
     "description": "",
-    "main": "build/server.js",
+    "main": "build/main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "rm -rf build && mkdir build && ../node_modules/.bin/babel . --ignore node_modules --out-dir build",
-        "start": "node build/server.js",
-        "watch": "../node_modules/.bin/babel-watch ./src/main/server.js -w ."
+        "start": "node build/main.js",
+        "watch": "../node_modules/.bin/babel-watch ./src/main/main.js -w ."
     },
     "keywords": [],
     "engines": {
