@@ -8,7 +8,7 @@ const countries = (state = [], action) => {
         case states.REQUEST.SAVE_COUNTRY:
             return state;
         case states.ADD_COUNTRY:
-            return [...(state || []), action.country];
+            return [...(state || []), { name: action.country }];
         default:
             return state;
     }
