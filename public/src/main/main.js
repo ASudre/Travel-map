@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { applyMiddleware, compose, createStore } from 'redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import travelMapApp from './reducers/rootReducer';
-import { fetchUser } from './actions/User/userActions';
+import userActions from './actions/User/userActions';
 import App from './components/App';
 
 injectTapEventPlugin();
@@ -19,7 +19,7 @@ const store = createStore(
     ),
 );
 
-store.dispatch(fetchUser());
+store.dispatch(userActions.fetchUser());
 
 render(
     <Provider store={store}>

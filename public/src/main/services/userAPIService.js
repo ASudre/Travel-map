@@ -13,7 +13,6 @@ const logIn = ({ email, password }) => {
             password,
         }),
     };
-
     return fetchUrl(`${config.server.baseUrl}/api/user/login`, params);
 };
 

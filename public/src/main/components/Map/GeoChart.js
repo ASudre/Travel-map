@@ -32,4 +32,3 @@ GeoChart.propTypes = {
  ************************
  */
 export default GeoChart;
-

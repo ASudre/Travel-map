@@ -16,7 +16,7 @@ const config = {
         public: 'travel.map.com:8081',
     },
 
-    devtool: 'sourceMap',
+    devtool: 'cheap-module-eval-source-map',
 
     module: {
         rules: [
