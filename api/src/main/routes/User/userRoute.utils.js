@@ -45,18 +45,36 @@ const createUser = (req, res) => {
 const createCountry = (req, res) => {
     try {
         const country = req.params.country;
-        return User.findByIdAndUpdate(
-            req.user.id,
-            { $push: { countries: { name: country } } },
-            { safe: true, upsert: true },
-        )
-            .then(() => User.findById(req.user.id))
-            .then((user) => {
-                res.json({ countries: user.countries });
-            });
+        User.find({ _id: req.user.id, 'countries.name': { $regex: new RegExp(country, 'i') } }).then((users) => {
+            if (users.length > 0) {
+                return res.status(500).json({ country: 'The country already exists !' });
+            }
+            return User.findByIdAndUpdate(
+                    { _id: req.user.id, 'countries.name': country },
+                    { $push: { countries: { name: country } } },
+                    { safe: true, upsert: true },
+                )
+                .then(() => User.findById(req.user.id))
+                .then((user) => {
+                    res.json({ countries: user.countries });
+                });
+        });
     } catch (e) {
         throw new Error(e);
     }
+};
+
+const removeCountry = (req, res) => {
+    const country = req.params.country;
+    return User.findByIdAndUpdate(
+            req.user.id,
+            { $pull: { countries: { name: country } } },
+            { safe: true, upsert: true },
+        )
+        .then(() => User.findById(req.user.id))
+        .then((user) => {
+            res.json({ countries: user.countries });
+        });
 };
 
 /** *********************
@@ -65,6 +83,7 @@ const createCountry = (req, res) => {
  */
 export default {
     createCountry,
+    removeCountry,
     createUser,
     logout,
     login,

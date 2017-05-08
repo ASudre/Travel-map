@@ -1,4 +1,4 @@
-import { SubmissionError } from 'redux-form';
+import { SubmissionError, reset } from 'redux-form';
 import userAPIService from '../../services/userAPIService';
 import state from './userStateActions';
 
@@ -34,7 +34,10 @@ const logOut = () => (dispatch) => {
     dispatch(state.requestLogOut());
     return userAPIService.logOut()
         .then(data => data.json())
-        .then(user => dispatch(state.receiveLogOut(user)));
+        .then((user) => {
+            dispatch(reset('addCountryForm'));
+            dispatch(state.receiveLogOut(user));
+        });
 };
 
 const fetchUser = () => (dispatch) => {

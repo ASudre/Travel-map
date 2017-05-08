@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import GeoChart from '../components/Map/GeoChart';
+import Map from '../../components/Map/Map';
 
 const buildCountriesArray = countries =>
     (!countries ? [] : countries.map(country => [country.name]));
@@ -13,4 +13,4 @@ const mapStateToProps = state =>
  * Exports              *
  ************************
  */
-export default connect(mapStateToProps, null)(GeoChart);
+export default connect(mapStateToProps, null)(Map);

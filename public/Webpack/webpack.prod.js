@@ -1,11 +1,12 @@
-const path = require('path');
-const webpack = require('webpack');
+import path from 'path';
+import webpack from 'webpack';
+import webpackRules from './webpackRules';
 
-module.exports = {
-    entry: './src/main/main.js',
+const config = {
+    entry: path.resolve(__dirname, '../src/main/main.js'),
 
     output: {
-        path: path.join(__dirname, '/../build/public/assets'),
+        path: path.join(__dirname, '../../build/public/assets'),
         filename: 'index.js',
         publicPath: '/assets',
         sourceMapFilename: '[name].map',
@@ -31,17 +32,13 @@ module.exports = {
 
     module: {
         rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: [/node_modules/],
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['env', 'react'],
-                        plugins: ['babel-plugin-transform-object-rest-spread', 'relay'],
-                    },
-                }],
-            },
+            webpackRules.babelLoaderRule,
+            webpackRules.cssLoaderRule,
+            webpackRules.fontLoaderRule,
+            webpackRules.eslintLoaderRule,
         ],
     },
+
 };
+
+export default config;
