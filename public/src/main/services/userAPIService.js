@@ -39,6 +39,17 @@ const saveCountry = (country) => {
     return fetchUrl(`${config.server.baseUrl}/api/user/countries/${country}`, params);
 };
 
+const removeCountry = (country) => {
+    const params = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    };
+    return fetchUrl(`${config.server.baseUrl}/api/user/countries/${country}`, params);
+};
+
 const createUser = ({ email, password }) => {
     const params = {
         method: 'POST',
@@ -72,6 +83,7 @@ export default {
     logIn,
     logOut,
     saveCountry,
+    removeCountry,
     createUser,
     initUser,
 };

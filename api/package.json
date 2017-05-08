@@ -17,10 +17,7 @@
     "license": "ISC",
     "babel": {
         "presets": [
-            "env",
-            "es2015",
-            "es2016",
-            "es2017"
+            "env"
         ],
         "plugins": [
             "babel-plugin-inline-import"

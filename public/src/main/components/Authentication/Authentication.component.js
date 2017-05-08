@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogIn from '../../containers/Authentication/Forms/LoginContainer';
-import LogOut from '../../containers/Authentication/Forms/LogoutContainer';
+import LogIn from '../../containers/Authentication/Forms/Login.container';
+import LogOut from '../../containers/Authentication/Forms/Logout.container';
 
 class AuthenticationForm extends React.Component {
     render() {

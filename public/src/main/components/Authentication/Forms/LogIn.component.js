@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { RaisedButton } from 'material-ui';
-import validate from './validations';
-import FormTextFieldComponent from './FormTextFieldComponent';
+import validate from './Login.validation';
+import FormTextFieldComponent from '../../Commons/FormTextField.component';
 
 const style = {
     marginLeft: 20,
@@ -51,7 +51,6 @@ LogIn.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     logIn: PropTypes.func.isRequired,
     createUser: PropTypes.func.isRequired,
-    error: PropTypes.string,
 };
 
 LogIn.defaultProps = {

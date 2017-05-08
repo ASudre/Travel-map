@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import AuthenticationForm from '../../components/Authentication/AuthenticationComponent';
+import AuthenticationForm from '../../components/Authentication/Authentication.component';
 
 const mapStateToProps = state =>
 ({

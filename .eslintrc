@@ -1,7 +1,9 @@
 {
   "extends": "airbnb",
   "globals": {
-    "fetch": false
+    "fetch": false,
+    "window": true,
+    "document": true
   },
   "rules": {
     "no-underscore-dangle": 0,

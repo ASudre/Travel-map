@@ -8,6 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import travelMapApp from './reducers/rootReducer';
 import userActions from './actions/User/userActions';
 import App from './components/App';
+import '../assets/materialIcons.css';
 
 injectTapEventPlugin();
 

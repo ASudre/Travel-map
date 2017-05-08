@@ -9,6 +9,8 @@ const countries = (state = [], action) => {
             return state;
         case states.ADD_COUNTRY:
             return [...(state || []), { name: action.country }];
+        case states.RECEIVE.REMOVE_COUNTRY:
+            return action.countries;
         default:
             return state;
     }
