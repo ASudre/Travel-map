@@ -66,13 +66,13 @@ const startServer = (serverConfiguration) => {
 
     logger.info(`Server running on port ${serverUrl}:${serverConfiguration.server.port} on ${serverConfiguration.environment}`);
 
+    app.use((req, res) => {
+        res.status(404).send('Endpoint not found.');
+    });
+
     app.use((err, req, res) => {
         logger.error(`Error 500, stack : ${err.stack}`);
         res.sendStatus(500).send(`An error occurred : ${err.message}`);
-    });
-
-    app.use((req, res) => {
-        res.status(404).send('Endpoint not found.');
     });
 
     return new Promise((resolve) => {

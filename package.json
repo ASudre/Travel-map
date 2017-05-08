@@ -3,7 +3,14 @@
     "version": "0.0.1",
     "description": "",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "build:front": "cd public && ../node_modules/.bin/webpack --env=prod -p",
+        "postbuild:front": "cp public/server.js public/index.html build/public",
+        "build:back:dev": "cd api && ../node_modules/.bin/webpack --define process.env.NODE_ENV=\"'dev'\"",
+        "build:back": "cd api && ../node_modules/.bin/webpack -p",
+        "build": "yarn build:front && yarn build:back",
+        "run:app:back": "node build/api/server.js",
+        "run:app:front": "node build/public/server.js"
     },
     "babel": {
         "presets": [
@@ -20,12 +27,11 @@
         ]
     },
     "dependencies": {
-        "bcrypt": "^1.0.2",
+        "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.17.1",
         "cookie-parser": "^1.4.3",
         "cors": "^2.8.3",
         "express": "^4.15.2",
-        "express-graphql": "^0.6.4",
         "express-session": "^1.15.2",
         "jsonwebtoken": "^7.3.0",
         "material-ui": "^0.17.1",
@@ -73,11 +79,12 @@
         "node-fetch": "^1.6.3",
         "portfinder": "^1.0.13",
         "webpack": "^2.4.1",
-        "webpack-dev-server": "2"
+        "webpack-dev-server": "2",
+        "webpack-node-externals": "^1.5.4"
     },
-    "author": [
-        "Arthur Sudre",
-        "Léo Raspaud"
+    "authors": [
+        "Arthur Sudre <arthursudre@gmail.com>",
+        "Léo Raspaud <leo.raspaud@gmail.com>"
     ],
     "license": "ISC"
 }

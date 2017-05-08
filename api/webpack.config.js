@@ -1,0 +1,33 @@
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+
+const config = {
+    entry: './src/main/main.js',
+
+    target: 'node',
+    externals: [
+        nodeExternals({ modulesDir: '../node_modules' }),
+    ],
+
+    output: {
+        path: path.resolve(__dirname, '../build/api'),
+        filename: 'server.js',
+    },
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env'],
+                        plugins: ['babel-plugin-transform-object-rest-spread'],
+                    },
+                }],
+            },
+        ],
+    },
+};
+
+module.exports = config;

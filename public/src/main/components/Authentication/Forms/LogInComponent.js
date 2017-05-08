@@ -37,7 +37,7 @@ class LogIn extends React.Component {
                 type="submit"
             />
             <RaisedButton
-                label="Sign in"
+                label="Sign up"
                 primary
                 style={style}
                 onClick={handleSubmit(createUser)}
