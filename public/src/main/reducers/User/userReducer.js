@@ -12,6 +12,11 @@ const user = (state = {}, action) => {
             return action.user;
         case states.RECEIVE.CREATE_USER:
             return action.user;
+        case states.SAVE_REDIRECT_URL:
+            return {
+                ...state,
+                redirectURL: action.redirectURL,
+            };
         case countryStates.RECEIVE.SAVE_COUNTRY:
         case countryStates.REQUEST.SAVE_COUNTRY:
         case countryStates.RECEIVE.REMOVE_COUNTRY:

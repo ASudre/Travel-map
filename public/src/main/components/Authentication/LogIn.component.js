@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { RaisedButton } from 'material-ui';
 import validate from './Login.validation';
-import FormTextFieldComponent from '../../Commons/FormTextField.component';
+import FormTextFieldComponent from '../Commons/FormTextField.component';
 
 const style = {
     marginLeft: 20,
@@ -31,15 +31,15 @@ class LogIn extends React.Component {
                 hintText={PASSWORD}
             />
             <RaisedButton
-                label="Log in"
                 primary
+                label="Log in"
                 style={style}
                 type="submit"
             />
             <RaisedButton
-                label="Sign up"
                 primary
                 style={style}
+                label="Sign up"
                 onClick={handleSubmit(createUser)}
             />
         </form>);
@@ -58,10 +58,11 @@ LogIn.defaultProps = {
 };
 
 /** **********************
-* Exports              *
-************************
-*/
-export default reduxForm({
-    form: 'logInForm',
-    validate,
-})(LogIn);
+ * Exports              *
+ ************************
+ */
+export default reduxForm(
+    {
+        form: 'logInForm',
+        validate,
+    })(LogIn);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import { RaisedButton } from 'material-ui';
+import RaisedButton from 'material-ui/RaisedButton/RaisedButton';
 import FormTextFieldComponent from '../Commons/FormTextField.component';
 import style from './AddCountry.style';
 
@@ -39,9 +39,10 @@ AddCountry.propTypes = {
 };
 
 /** **********************
-* Exports              *
-************************
-*/
-export default reduxForm({
-    form: 'addCountryForm',
-})(AddCountry);
+ * Exports              *
+ ************************
+ */
+export default reduxForm(
+    {
+        form: 'addCountryForm',
+    })(AddCountry);
