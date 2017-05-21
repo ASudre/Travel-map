@@ -5,9 +5,14 @@
     "main": "build/main.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "rm -rf build && mkdir build && ../node_modules/.bin/babel . --ignore node_modules --out-dir build",
+        "build:dev": "../node_modules/.bin/webpack --define process.env.NODE_ENV=\"'dev'\"",
         "start": "node build/main.js",
-        "watch": "../node_modules/.bin/babel-watch ./src/main/main.js -w ."
+        "watch": "../node_modules/.bin/babel-watch ./src/main/main.js -w .",
+        "build": "../node_modules/.bin/webpack -p",
+        "postbuild": "cp ../package.json ../yarn.lock docker/build",
+        "docker:build": "docker build -t travel-map_api docker -f docker/Dockerfile.api",
+        "docker:push": "./docker/tag_push.sh",
+        "release": "yarn build && yarn docker:build && yarn docker:push"
     },
     "keywords": [],
     "engines": {

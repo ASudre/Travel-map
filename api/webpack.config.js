@@ -10,7 +10,7 @@ const config = {
     ],
 
     output: {
-        path: path.resolve(__dirname, '../build/api'),
+        path: path.resolve(__dirname, './docker/build'),
         filename: 'server.js',
     },
 

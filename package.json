@@ -4,13 +4,7 @@
     "description": "",
     "scripts": {
         "test": "jest",
-        "build:front": "cd public && ../node_modules/.bin/webpack --env=prod -p",
-        "postbuild:front": "cp public/server.js public/index.html build/public",
-        "build:back:dev": "cd api && ../node_modules/.bin/webpack --define process.env.NODE_ENV=\"'dev'\"",
-        "build:back": "cd api && ../node_modules/.bin/webpack -p",
-        "build": "yarn build:front && yarn build:back",
-        "run:app:back": "node build/api/server.js",
-        "run:app:front": "node build/public/server.js"
+        "docker:up": "docker-compose up"
     },
     "babel": {
         "presets": [
@@ -25,7 +19,7 @@
     },
     "dependencies": {
         "babel-register": "^6.24.1",
-        "bcrypt-nodejs": "^1.0.2",
+        "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.17.1",
         "cookie-parser": "^1.4.3",
         "cors": "^2.8.3",

@@ -13,7 +13,7 @@ const logIn = ({ email, password }) => {
             password,
         }),
     };
-    return fetchUrl(`${config.server.baseUrl}/api/user/login`, params);
+    return fetchUrl(`${config.server.host}:${config.server.port}/api/user/login`, params);
 };
 
 const logOut = () => {
@@ -25,7 +25,7 @@ const logOut = () => {
         credentials: 'include',
     };
 
-    return fetchUrl(`${config.server.baseUrl}/api/user/logout`, params);
+    return fetchUrl(`${config.server.host}:${config.server.port}/api/user/logout`, params);
 };
 
 const saveCountry = (country) => {
@@ -36,7 +36,7 @@ const saveCountry = (country) => {
         },
         credentials: 'include',
     };
-    return fetchUrl(`${config.server.baseUrl}/api/user/countries/${country}`, params);
+    return fetchUrl(`${config.server.host}:${config.server.port}/api/user/countries/${country}`, params);
 };
 
 const removeCountry = (country) => {
@@ -47,7 +47,7 @@ const removeCountry = (country) => {
         },
         credentials: 'include',
     };
-    return fetchUrl(`${config.server.baseUrl}/api/user/countries/${country}`, params);
+    return fetchUrl(`${config.server.host}:${config.server.port}/api/user/countries/${country}`, params);
 };
 
 const createUser = ({ email, password }) => {
@@ -61,7 +61,7 @@ const createUser = ({ email, password }) => {
             password,
         }),
     };
-    return fetchUrl(`${config.server.baseUrl}/api/user`, params);
+    return fetchUrl(`${config.server.host}:${config.server.port}/api/user`, params);
 };
 
 const initUser = () => {
@@ -72,7 +72,7 @@ const initUser = () => {
         },
         credentials: 'include',
     };
-    return fetchUrl(`${config.server.baseUrl}/api/user`, params);
+    return fetchUrl(`${config.server.host}:${config.server.port}/api/user`, params);
 };
 
 /** **********************

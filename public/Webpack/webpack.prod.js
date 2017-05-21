@@ -6,7 +6,7 @@ const config = {
     entry: path.resolve(__dirname, '../src/main/main.js'),
 
     output: {
-        path: path.join(__dirname, '../../build/public/assets'),
+        path: path.join(__dirname, '../docker/build/assets'),
         filename: 'index.js',
         publicPath: '/assets',
         sourceMapFilename: '[name].map',
