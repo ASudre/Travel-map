@@ -39,6 +39,11 @@ const receiveUser = user => ({
     user,
 });
 
+const saveUserRedirectURL = redirectURL => ({
+    type: userStates.SAVE_REDIRECT_URL,
+    redirectURL,
+});
+
 /** **********************
  * Exports              *
  ************************
@@ -52,4 +57,5 @@ export default {
     requestLogOut,
     receiveUser,
     requestUser,
+    saveUserRedirectURL,
 };

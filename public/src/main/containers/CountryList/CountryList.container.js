@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import CountryList from '../../components/CountryList/CountryList.component';
 import countriesActions from '../../actions/User/Countries/countriesActions';
 
@@ -15,9 +16,8 @@ const mapDispatchToProps = dispatch =>
         removeCountry: country => dispatch(countriesActions.removeCountry(country)),
     });
 
-
 /** **********************
  * Exports              *
  ************************
  */
-export default connect(mapStateToProps, mapDispatchToProps)(CountryList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CountryList));

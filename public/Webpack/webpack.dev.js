@@ -17,7 +17,7 @@ const config = {
         public: 'travel.map.com:8081',
     },
 
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'cheap-module-inline-source-map',
 
     module: {
         rules: [

@@ -13,6 +13,7 @@ const userStates = {
         LOGOUT: `${RECEIVE}LOGOUT`,
         CREATE_USER: `${RECEIVE}CREATE_USER`,
     },
+    SAVE_REDIRECT_URL: 'SAVE_REDIRECT_URL',
 };
 
 /** **********************
