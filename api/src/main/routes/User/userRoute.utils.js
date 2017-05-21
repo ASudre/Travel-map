@@ -34,10 +34,11 @@ const createUser = (req, res) => {
     return user.save()
         .then(response => res.json(response))
         .catch((error) => {
-            logger.error(`Error while trying to create a user ${error}`);
             if (error.code === 11000) {
-                return res.status(500).json({ email: 'User already existing' });
+                logger.error(`User with email ${email} already exists`);
+                return res.status(400).json({ email: 'User already existing' });
             }
+            logger.error(`Error while trying to create a user ${error}`);
             return res.status(500).json({ _error: `Error code : ${error.code}` });
         });
 };
