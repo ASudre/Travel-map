@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 import webpackRules from './webpackRules';
 
 const config = {
@@ -27,6 +28,14 @@ const config = {
             webpackRules.eslintLoaderRule,
         ],
     },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"dev"',
+            },
+        }),
+    ],
 };
 
 export default config;

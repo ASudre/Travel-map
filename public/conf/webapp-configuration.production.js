@@ -1,6 +1,6 @@
 export default {
     server: {
-        host: 'http://travel.map.com',
+        host: 'http://104.155.88.208',
         port: '8080',
     },
 };
