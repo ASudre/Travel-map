@@ -4,7 +4,12 @@
     "description": "React project",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "watch": "../node_modules/.bin/webpack-dev-server --hot"
+        "watch": "../node_modules/.bin/webpack-dev-server --hot",
+        "build": "../node_modules/.bin/webpack --env=prod -p",
+        "postbuild": "cp server.js index.html ../package.json ../yarn.lock docker/build",
+        "docker:build": "docker build docker -t travel-map_public -f docker/Dockerfile.public",
+        "docker:push": "./docker/tag_push.sh",
+        "release": "yarn build && yarn docker:build && yarn docker:push"
     },
     "author": "Arthur Sudre",
     "license": "ISC"

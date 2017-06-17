@@ -4,6 +4,10 @@ export default {
         baseUrl: process.env.SERVER_URL,
         port: process.env.SERVER_PORT,
     },
+    webApp: {
+        baseUrl: process.env.WEB_APP_URL,
+        port: process.env.WEB_APP_PORT,
+    },
     authentication: {
         jwtSecret: process.env.JWT_SECRET,
         issuer: 'travelMap',
