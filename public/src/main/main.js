@@ -16,13 +16,17 @@ import App from './containers/App/App.container';
 injectTapEventPlugin();
 
 const history = createHistory();
+const composeFunctions = [
+    applyMiddleware(thunkMiddleware),
+    applyMiddleware(routerMiddleware(history)),
+    ...(process.env.NODE_ENV !== 'production' ?
+        [window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION__()]
+        : []),
+];
+
 const store = createStore(
     travelMapApp,
-    compose(
-        applyMiddleware(thunkMiddleware),
-        applyMiddleware(routerMiddleware(history)),
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    ),
+    compose(...composeFunctions),
 );
 
 store.dispatch(userActions.fetchUser()).then(() => {
@@ -37,4 +41,3 @@ store.dispatch(userActions.fetchUser()).then(() => {
         document.getElementById('root'),
     );
 });
-
