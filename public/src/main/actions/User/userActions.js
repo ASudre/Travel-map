@@ -1,50 +1,52 @@
 import { reset, SubmissionError } from 'redux-form';
 import userAPIService from '../../services/userAPIService';
-import state from './userStateActions';
+import userState from './userStateActions';
+import countryActions from '../../actions/Country/countryActions';
 
 const createUser = (email, password) => (dispatch) => {
-    dispatch(state.requestCreateUser(email));
+    dispatch(userState.requestCreateUser(email));
     return userAPIService.createUser({ email, password })
-                         .then((data) => {
-                             if (data.status === 200) {
-                                 return data.json();
-                             }
-                             return data.json().then((error) => {
-                                 throw new SubmissionError(error);
-                             });
-                         })
-                         .then(user => dispatch(state.receiveCreateUser(user)));
+    .then((data) => {
+        if (data.status === 200) {
+            return data.json();
+        }
+        return data.json().then((error) => {
+            throw new SubmissionError(error);
+        });
+    })
+    .then(user => dispatch(userState.receiveCreateUser(user)));
 };
 
 const logIn = (email, password) => (dispatch) => {
-    dispatch(state.requestLogIn(email));
+    dispatch(userState.requestLogIn(email));
     return userAPIService.logIn({ email, password })
-                         .then((data) => {
-                             if (data.status === 200) {
-                                 return data.json();
-                             }
-                             return data.json().then((json) => {
-                                 throw new SubmissionError(json);
-                             });
-                         })
-                         .then(user => dispatch(state.receiveLogIn(user)));
+    .then((data) => {
+        if (data.status === 200) {
+            return data.json();
+        }
+        return data.json().then((json) => {
+            throw new SubmissionError(json);
+        });
+    })
+    .then(user => dispatch(userState.receiveLogIn(user)))
+    .then(() => dispatch(countryActions.fetchCountries()));
 };
 
 const logOut = () => (dispatch) => {
-    dispatch(state.requestLogOut());
+    dispatch(userState.requestLogOut());
     return userAPIService.logOut()
                          .then(data => data.json())
                          .then((user) => {
                              dispatch(reset('addCountryForm'));
-                             dispatch(state.receiveLogOut(user));
+                             dispatch(userState.receiveLogOut(user));
                          });
 };
 
 const fetchUser = () => (dispatch) => {
-    dispatch(state.requestUser());
+    dispatch(userState.requestUser());
     return userAPIService.initUser()
                          .then(data => (data.status === 200 ? data.json() : {}))
-                         .then(user => dispatch(state.receiveUser(user)));
+                         .then(user => dispatch(userState.receiveUser(user)));
 };
 
 /** **********************

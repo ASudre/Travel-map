@@ -16,6 +16,7 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state =>
     ({
         isLoggedIn: !!state.user.id,
+        countries: state.countries,
     });
 
 /** **********************
