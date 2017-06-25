@@ -16,8 +16,12 @@ const cssLoaderRule = {
 };
 
 const fontLoaderRule = {
-    test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-    loader: 'file-loader?name=fonts/[name].[ext]&publicPath=assets/fonts',
+    test: /\.(ttf|woff|woff(2))$/,
+    loader: 'file-loader',
+    query: {
+        name: '[path][name].[ext]',
+        publicPath: 'assets/fonts',
+    },
 };
 
 const eslintLoaderRule = {
@@ -25,7 +29,7 @@ const eslintLoaderRule = {
     exclude: /node_modules/,
     loader: 'eslint-loader',
     options: {
-          // eslint options (if necessary)
+        // eslint options (if necessary)
     },
 };
 

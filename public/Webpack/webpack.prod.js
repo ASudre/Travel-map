@@ -33,6 +33,7 @@ const config = {
                 NODE_ENV: '"production"',
             },
         }),
+        new webpack.optimize.ModuleConcatenationPlugin(),
     ],
 
     module: {

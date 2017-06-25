@@ -18,13 +18,14 @@
         ]
     },
     "dependencies": {
+        "babel-loader": "^7.1.0",
         "babel-register": "^6.24.1",
         "bcrypt-nodejs": "^0.0.3",
         "body-parser": "^1.17.1",
         "cookie-parser": "^1.4.3",
         "cors": "^2.8.3",
         "css-loader": "^0.28.1",
-        "eslint-loader": "^1.7.1",
+        "eslint-loader": "^1.8.0",
         "express": "^4.15.2",
         "express-session": "^1.15.2",
         "file-loader": "^0.11.1",
@@ -53,6 +54,7 @@
         "redux-thunk": "^2.2.0",
         "serve-static": "^1.12.1",
         "style-loader": "^0.17.0",
+        "webpack-dev-server": "^2.5.0",
         "winston": "^2.3.1"
     },
     "devDependencies": {
@@ -60,7 +62,6 @@
         "babel-core": "^6.24.1",
         "babel-eslint": "^7.2.1",
         "babel-jest": "^19.0.0",
-        "babel-loader": "^6.4.1",
         "babel-plugin-inline-import": "^2.0.4",
         "babel-plugin-relay": "dev",
         "babel-plugin-transform-object-rest-spread": "^6.23.0",
@@ -75,8 +76,7 @@
         "jest": "^19.0.2",
         "node-fetch": "^1.6.3",
         "portfinder": "^1.0.13",
-        "webpack": "^2.4.1",
-        "webpack-dev-server": "2",
+        "webpack": "3.0.0",
         "webpack-node-externals": "^1.5.4"
     },
     "authors": [

@@ -12,5 +12,6 @@
         "release": "yarn build && yarn docker:build && yarn docker:push"
     },
     "author": "Arthur Sudre",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {}
 }
