@@ -18,9 +18,8 @@ const cssLoaderRule = {
 const fontLoaderRule = {
     test: /\.(ttf|woff|woff(2))$/,
     loader: 'file-loader',
-    query: {
-        name: '[path][name].[ext]',
-        publicPath: 'assets/fonts',
+    options: {
+        name: 'fonts/[path][name].[ext]',
     },
 };
 
